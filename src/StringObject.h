@@ -26,5 +26,6 @@ String *stringAssign(String *string);
 String *stringDel(String *string);
 void stringSkip(String *string, int numChar2Skip);
 void stringTrimLeft(String *string);
+void stringTrimRight(String *string);
 
 #endif // StringObject_H

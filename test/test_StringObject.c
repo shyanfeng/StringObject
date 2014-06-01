@@ -62,7 +62,7 @@ void test_textAssign(void){
 	TEST_ASSERT_EQUAL(name2->reference, name3->reference);
 }
 
-void test_textDel_from_2_to_1(void){
+void test_textDel_dynamic_from_2_to_1(void){
 	Text *name1 = t"Wing Jen";
 	Text *name2;
 	Text *name3;
@@ -171,7 +171,7 @@ void test_stringSkip_should_skip_from_HELLO_to_LLO(void){
 	TEST_ASSERT_EQUAL(3, str->length);
 }
 
-void test_stringTrimLeft(void){
+void test_stringTrimLeft_should_remove_the_2_spaces_on_left(void){
 	String *str = stringNew(textNew("  HELLO"));
 	stringTrimLeft(str);
 	stringDump(str);
@@ -180,3 +180,15 @@ void test_stringTrimLeft(void){
 	TEST_ASSERT_EQUAL(7, str->length);
 
 }
+
+void test_stringTrimRight_should_remove_the_2_spaces_on_right(void){
+	String *str = stringNew(textNew("HELLO  "));
+	stringTrimRight(str);
+	stringDump(str);
+	
+	TEST_ASSERT_EQUAL(0, str->start);
+	TEST_ASSERT_EQUAL(5, str->length);
+
+}
+
+

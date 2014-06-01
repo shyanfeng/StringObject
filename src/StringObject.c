@@ -3,6 +3,18 @@
 #include <malloc.h>
 #include "StringObject.h"
 
+void stringTrimRight(String *string){
+	int i = 0;
+	char ch = string->text->string[0];
+	
+	while(!isSpace(ch)){
+		i++;
+		ch = string->text->string[i];
+		string->length--;
+	}
+	
+}
+
 void stringTrimLeft(String *string){
 	int i = 0;
 	char ch = string->text->string[0];
