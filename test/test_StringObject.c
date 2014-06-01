@@ -171,3 +171,12 @@ void test_stringSkip_should_skip_from_HELLO_to_LLO(void){
 	TEST_ASSERT_EQUAL(3, str->length);
 }
 
+void test_stringTrimLeft(void){
+	String *str = stringNew(textNew("  HELLO"));
+	stringTrimLeft(str);
+	stringDump(str);
+	
+	TEST_ASSERT_EQUAL(2, str->start);
+	TEST_ASSERT_EQUAL(7, str->length);
+
+}

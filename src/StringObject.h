@@ -2,6 +2,7 @@
 #define StringObject_H
 
 #include "Types.h"
+#define isSpace(ch) (ch == ' ' || ch == '\t')
 
 typedef struct Text{
 	uint32 reference;
@@ -24,5 +25,6 @@ String *stringNew(Text *text);
 String *stringAssign(String *string);
 String *stringDel(String *string);
 void stringSkip(String *string, int numChar2Skip);
+void stringTrimLeft(String *string);
 
 #endif // StringObject_H
