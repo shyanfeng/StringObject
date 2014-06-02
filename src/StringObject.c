@@ -2,13 +2,19 @@
 #include <string.h>
 #include <malloc.h>
 #include "StringObject.h"
+void stringTrim(String *string){
+
+	stringTrimLeft(string);
+	stringTrimRight(string);
+
+}
 
 void stringTrimRight(String *string){
-	int i = 0;
-	char ch = string->text->string[0];
+	int i = string->start + string->length - 1;
+	char ch = string->text->string[i];
 	
-	while(!isSpace(ch)){
-		i++;
+	while(isSpace(ch)){
+		i--;
 		ch = string->text->string[i];
 		string->length--;
 	}
@@ -125,7 +131,6 @@ void stringDump(String *string){
 				len = actualLength;
 		}else{
 			actualString = "";
-			len = 0;
 		}
 	}
 	

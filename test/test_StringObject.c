@@ -181,6 +181,16 @@ void test_stringTrimLeft_should_remove_the_2_spaces_on_left(void){
 
 }
 
+void test_stringTrimLeft_should_remove_the_2_spaces_and_tab_on_left(void){
+	String *str = stringNew(textNew("  \tHELLO"));
+	stringTrimLeft(str);
+	stringDump(str);
+	
+	TEST_ASSERT_EQUAL(3, str->start);
+	TEST_ASSERT_EQUAL(8, str->length);
+
+}
+
 void test_stringTrimRight_should_remove_the_2_spaces_on_right(void){
 	String *str = stringNew(textNew("HELLO  "));
 	stringTrimRight(str);
@@ -191,4 +201,32 @@ void test_stringTrimRight_should_remove_the_2_spaces_on_right(void){
 
 }
 
+void test_stringTrimRight_should_remove_the_2_spaces_and_tab_on_right(void){
+	String *str = stringNew(textNew("HELLO  \t"));
+	stringTrimRight(str);
+	stringDump(str);
+	
+	TEST_ASSERT_EQUAL(0, str->start);
+	TEST_ASSERT_EQUAL(5, str->length);
 
+}
+
+void test_stringTrim_should_remove_the_2_spaces_on_left_and_2_spaces_on_right(void){
+	String *str = stringNew(textNew("  HELLO  "));
+	stringTrim(str);
+	stringDump(str);
+	
+	TEST_ASSERT_EQUAL(2, str->start);
+	TEST_ASSERT_EQUAL(9, str->length);
+
+}
+
+void test_stringTrim_should_remove_the_2_spaces_and_tab_on_left_and_2_spaces_and_tab_on_right(void){
+	String *str = stringNew(textNew("\t  HELLO  \t"));
+	stringTrim(str);
+	stringDump(str);
+	
+	TEST_ASSERT_EQUAL(3, str->start);
+	TEST_ASSERT_EQUAL(11, str->length);
+
+}
