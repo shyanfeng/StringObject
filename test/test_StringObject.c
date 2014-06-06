@@ -230,3 +230,120 @@ void test_stringTrim_should_remove_the_2_spaces_and_tab_on_left_and_2_spaces_and
 	TEST_ASSERT_EQUAL(11, str->length);
 
 }
+
+void test_stringRemoveChar_should_remove_s_from_samsung_and_become_amsung(void){
+
+	String *str = stringNew(textNew("samsung"));
+	stringDump(str);
+	stringRemoveChar(str);
+	stringDump(str);
+	
+	TEST_ASSERT_EQUAL('a', str->text->string[str->start]);
+	TEST_ASSERT_EQUAL(6, str->length);
+
+}
+
+void test_stringRemoveChar_should_remove_ap_from_apple_and_become_ple(void){
+	
+	String *str = stringNew(textNew("apple"));
+	stringDump(str);
+	stringRemoveChar(str);
+	stringRemoveChar(str);
+	stringDump(str);
+	
+	TEST_ASSERT_EQUAL('p', str->text->string[str->start]);
+	TEST_ASSERT_EQUAL(3, str->length);
+
+}
+
+void test_stringRemoveChar_should_return_negative_1_when_nothing_to_remove(void){
+	char a;
+	
+	String *str = stringNew(textNew("abc"));
+	stringDump(str);
+	stringRemoveChar(str);
+	stringRemoveChar(str);
+	stringRemoveChar(str);
+	a = stringRemoveChar(str);
+	stringDump(str);
+	
+	TEST_ASSERT_EQUAL(-1, a);
+	
+}
+
+void test_stringLength_should_return_length_of_string(void){
+	char a;
+	
+	String *str = stringNew(textNew("Xiaomi3"));
+	stringDump(str);
+	a = stringLength(str);
+	stringDump(str);
+
+	TEST_ASSERT_EQUAL(7, a);
+
+}
+
+void test_stringRemoveWordNotContaining_should_remove_dragon_from_dragonball_and_become_ball(void){
+
+	String *str = stringNew(textNew("dragonball"));
+	stringDump(str);
+	String *str2 = stringRemoveWordNotContaining(str, "ball");
+	stringDump(str2);
+	
+	TEST_ASSERT_EQUAL('d', str2->text->string[str2->start]);
+	TEST_ASSERT_EQUAL(0, str2->start);
+	TEST_ASSERT_EQUAL(6, str2->length);
+	TEST_ASSERT_EQUAL('b', str->text->string[str->start]);
+	TEST_ASSERT_EQUAL(6, str->start);
+	TEST_ASSERT_EQUAL(4, str->length);
+
+}
+
+void test_stringRemoveWordContainings_should_remove_ku_from_goku_and_become_go(void){
+
+	String *str = stringNew(textNew("goku"));
+	stringDump(str);
+	String *str2 = stringRemoveWordContaining(str, "go");
+	stringDump(str2);
+
+	TEST_ASSERT_EQUAL('g', str2->text->string[str2->start]);
+	TEST_ASSERT_EQUAL(0, str2->start);
+	TEST_ASSERT_EQUAL(2, str2->length);
+	TEST_ASSERT_EQUAL('k', str->text->string[str->start]);
+	TEST_ASSERT_EQUAL(2, str->start);
+	TEST_ASSERT_EQUAL(2, str->length);
+
+}
+
+void test_stringIsEqual_have_same_characters_should_return_1(void){
+	char a;
+	
+	String *str = stringNew(textNew("pikolo"));
+	stringDump(str);
+	String *str2 = stringNew(textNew("koli"));
+	stringDump(str2);
+	str->start += 2;
+	str->length -= 2;
+	a = stringIsEqual(str, str2);
+	stringDump(str);
+	stringDump(str2);
+	
+	TEST_ASSERT_EQUAL(1, a);
+	TEST_ASSERT_EQUAL(4, str->length);
+}
+
+/*void test_stringIsEqual_dont_have_the_same_characters_should_return_0(void){
+	char a;
+	
+	String *str = stringNew(textNew("library"));
+	stringDump(str);
+	String *str2 = stringNew(textNew("canteen"));
+	stringDump(str2);
+	a = stringIsEqual(str, str2);
+	
+	TEST_ASSERT_EQUAL(0, a);
+}*/
+
+/*void test_stringIsEqualCaseInSensitve(void){
+
+}*/

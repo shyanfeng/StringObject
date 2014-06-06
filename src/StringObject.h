@@ -28,4 +28,12 @@ void stringSkip(String *string, int numChar2Skip);
 void stringTrimLeft(String *string);
 void stringTrimRight(String *string);
 
+
+int stringRemoveChar(String *string);
+int stringLength(String *string);
+String *stringRemoveWordNotContaining(String *string, char *delimiters);
+String *stringRemoveWordContaining(String *string, char containSet[]);
+int stringIsEqual(String *string1, String *string2);
+int stringIsEqualCaseInSensitve(String *string1, String *string2);
+
 #endif // StringObject_H

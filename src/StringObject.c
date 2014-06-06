@@ -2,6 +2,99 @@
 #include <string.h>
 #include <malloc.h>
 #include "StringObject.h"
+
+/*int stringIsEqualCaseInSensitve(String *string1, String *string2){
+
+}
+*/
+int stringIsEqual(String *string1, String *string2){
+	
+	int i;
+	int length;
+	
+	if(string1->length != string2->length){
+		return 0;
+	}
+	
+	string1->length = string2->length;
+	length = string1->length;
+
+	for(i = 0; i < length; i++){
+		printf("%c\n", string1->text->string[i + string1->start]);
+		printf("%c\n", string2->text->string[i + string2->start]);
+		if(string1->text->string[i + string1->start] != string2->text->string[i + string2->start]){
+			printf("DETECTED NOT SAME\n");
+		}
+	}
+
+	//return 1;
+
+
+}
+
+String *stringRemoveWordContaining(String *string, char containSet[]){
+	
+	int i = 0;
+	int j = 0;
+	String *string2 = stringNew(string->text);
+	string2->start = 0;
+	string2->length = 0;
+
+	while(string->text->string[i] != 0){
+		if(string->text->string[i] == containSet[j]){
+			string->start++;
+			string->length--;
+			string2->length++;
+		}else{
+			break;
+		}
+	i++;
+	j++;
+	}
+	return string2;
+
+}
+
+String *stringRemoveWordNotContaining(String *string, char *delimiters){
+	
+	int i = 0;
+	int j = 0;
+	String *string2 = stringNew(string->text);
+	string2->start = 0;
+	string2->length = 0;
+	
+	while(string->text->string[i] != 0){
+		if(string->text->string[i] != delimiters[j]){
+			string->start++;
+			string->length--;
+			string2->length++;
+		}else{
+			break;
+		}
+	i++;
+	}
+	return string2;
+}
+
+int stringLength(String *string){
+	
+	return string->length;
+
+}
+
+int stringRemoveChar(String *string){
+	
+	char a = string->text->string[string->start];
+	char b = string->text->string[string->length];
+	
+	if(a != b){
+	string->start++;
+	string->length--;
+	}
+	
+	return -1;
+}
+
 void stringTrim(String *string){
 
 	stringTrimLeft(string);
