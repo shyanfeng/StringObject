@@ -315,7 +315,7 @@ void test_stringRemoveWordContainings_should_remove_ku_from_goku_and_become_go(v
 
 }
 
-void test_stringIsEqual_have_same_characters_should_return_1(void){
+void test_stringIsEqual_dont_have_same_characters_should_return_0(void){
 	char a;
 	
 	String *str = stringNew(textNew("pikolo"));
@@ -328,22 +328,56 @@ void test_stringIsEqual_have_same_characters_should_return_1(void){
 	stringDump(str);
 	stringDump(str2);
 	
-	TEST_ASSERT_EQUAL(1, a);
+	TEST_ASSERT_EQUAL(0, a);
 	TEST_ASSERT_EQUAL(4, str->length);
 }
 
-/*void test_stringIsEqual_dont_have_the_same_characters_should_return_0(void){
+void test_stringIsEqual_have_the_same_characters_should_return_1(void){
 	char a;
 	
 	String *str = stringNew(textNew("library"));
 	stringDump(str);
-	String *str2 = stringNew(textNew("canteen"));
+	String *str2 = stringNew(textNew("mylibrary"));
 	stringDump(str2);
+	str2->start += 2;
+	str2->length -= 2;
 	a = stringIsEqual(str, str2);
+	stringDump(str);
+	stringDump(str2);
+	
+	TEST_ASSERT_EQUAL(1, a);
+	TEST_ASSERT_EQUAL(7, str->length);
+}
+
+void test_stringIsEqualCaseInSensitve_have_same_characters_of_str_and_str2_should_become_lower_case_and_return_1(void){
+	char a;
+	
+	String *str = stringNew(textNew("CanTEEn"));
+	stringDump(str);
+	String *str2 = stringNew(textNew("cAnTeEN"));
+	stringDump(str2);
+	a = stringIsEqualCaseInSensitve(str, str2);
+	stringDump(str);
+	stringDump(str2);
+	
+	TEST_ASSERT_EQUAL(1, a);
+	TEST_ASSERT_EQUAL(7, str->length);
+	
+}
+
+void test_stringIsEqualCaseInSensitve_dont_have_same_characters_of_str_and_str2_should_return_1(void){
+	char a;
+	
+	String *str = stringNew(textNew("rEDbRicks"));
+	stringDump(str);
+	String *str2 = stringNew(textNew("CafeTeriA"));
+	stringDump(str2);
+	a = stringIsEqualCaseInSensitve(str, str2);
+	stringDump(str);
+	stringDump(str2);
 	
 	TEST_ASSERT_EQUAL(0, a);
-}*/
+	
+}
 
-/*void test_stringIsEqualCaseInSensitve(void){
 
-}*/

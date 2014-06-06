@@ -3,10 +3,37 @@
 #include <malloc.h>
 #include "StringObject.h"
 
-/*int stringIsEqualCaseInSensitve(String *string1, String *string2){
+int stringIsEqualCaseInSensitve(String *string1, String *string2){
+
+	int i;
+	int length;
+	
+	if(string1->length != string2->length){
+		return 0;
+	}
+	
+	string1->length = string2->length;
+	length = string1->length;
+	
+	for(i = 0; i < length; i++){
+		string1->text->string[i] = tolower(string1->text->string[i]);
+		string2->text->string[i] = tolower(string2->text->string[i]);
+	}
+
+
+	for(i = 0; i < length; i++){
+		printf("%c\n", string1->text->string[i + string1->start]);
+		printf("%c\n", string2->text->string[i + string2->start]);
+		if(string1->text->string[i + string1->start] != string2->text->string[i + string2->start]){
+			printf("DETECTED NOT SAME\n");
+			return 0;
+		}
+	}
+
+	return 1;
 
 }
-*/
+
 int stringIsEqual(String *string1, String *string2){
 	
 	int i;
@@ -24,10 +51,11 @@ int stringIsEqual(String *string1, String *string2){
 		printf("%c\n", string2->text->string[i + string2->start]);
 		if(string1->text->string[i + string1->start] != string2->text->string[i + string2->start]){
 			printf("DETECTED NOT SAME\n");
+			return 0;
 		}
 	}
 
-	//return 1;
+	return 1;
 
 
 }
