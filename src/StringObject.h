@@ -3,6 +3,7 @@
 
 #include "Types.h"
 #define isSpace(ch) (ch == ' ' || ch == '\t')
+#define t (Text *)"\x00\x00\x00\x80"
 
 typedef struct Text{
 	uint32 reference;
