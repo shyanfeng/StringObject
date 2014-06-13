@@ -36,5 +36,7 @@ String *stringRemoveWordNotContaining(String *string, char *delimiters);
 String *stringRemoveWordContaining(String *string, char containSet[]);
 int stringIsEqual(String *string1, String *string2);
 int stringIsEqualCaseInSensitve(String *string1, String *string2);
+int stringCharAt(String *str, int relativeIndex);
+int stringCharAtInSet(String *str, int relativeIndex, char set[]);
 
 #endif // StringObject_H

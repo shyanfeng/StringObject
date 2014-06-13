@@ -3,6 +3,45 @@
 #include <malloc.h>
 #include "StringObject.h"
 
+int stringCharAtInSet(String *str, int relativeIndex, char set[]){
+	int i = 0;
+	
+	while(set[i] != 0){
+		if(str->text->string[str->start + relativeIndex] == set[i]){
+			return 1;
+		}else{
+			i++;
+		}
+	}
+	
+	return 0;
+}
+
+/**
+ * Return the character at the specified relative index
+ * of the String
+ *
+ * Input:
+ *	str				is the String object
+ *	relativeIndex	is the relative index into the String.
+					This value must be positive.
+ * Return the character at the relative index if exists.
+ * Otherwise return -1. If relativeIndex < 0, -1 is returned
+ * as well
+ */
+ 
+ int stringCharAt(String *str, int relativeIndex){
+	if(relativeIndex == -1){
+		return -1;
+	}
+	
+	if(relativeIndex < str->length){
+		return str->text->string[str->start + relativeIndex];
+	}else{
+		return -1;
+	}
+ }
+
 int stringIsEqualCaseInSensitve(String *string1, String *string2){
 
 	int i;
@@ -62,22 +101,31 @@ int stringIsEqual(String *string1, String *string2){
 
 String *stringRemoveWordContaining(String *string, char containSet[]){
 	
-	int i = 0;
+	int i = string->start;
 	int j = 0;
+	int status = 0;
 	String *string2 = stringNew(string->text);
 	string2->start = 0;
 	string2->length = 0;
 
 	while(string->text->string[i] != 0){
-		if(string->text->string[i] == containSet[j]){
-			string->start++;
-			string->length--;
-			string2->length++;
-		}else{
-			break;
+		while(containSet[j] != 0){
+			if(string->text->string[i] == containSet[j]){
+				status = 1;
+				
+			}
+			j++;
 		}
+		if(status == 1){
+			string2->start = string->start;
+				string2->length = i - string->start;
+				string->start = i;
+				string->length = string->length - i;
+
+				return string2;
+		}
+		j = 0;
 	i++;
-	j++;
 	}
 	return string2;
 
@@ -85,20 +133,39 @@ String *stringRemoveWordContaining(String *string, char containSet[]){
 
 String *stringRemoveWordNotContaining(String *string, char *delimiters){
 	
-	int i = 0;
+	int i = string->start;
 	int j = 0;
 	String *string2 = stringNew(string->text);
 	string2->start = 0;
 	string2->length = 0;
 	
 	while(string->text->string[i] != 0){
-		if(string->text->string[i] != delimiters[j]){
-			string->start++;
-			string->length--;
-			string2->length++;
-		}else{
-			break;
+		while(delimiters[j] != 0){
+			if(string->text->string[i] == delimiters[j]){
+				string2->start = string->start;
+				string2->length = i - string->start;
+				string->start = i;
+				string->length = string->length - i;
+				return string2;
+			}else{
+				j++;
+			}
+			/*if(string->text->string[i] == delimiters[j]){
+				end = i;
+			}
+		
+			if(string->text->string[i] == delimiters[j + 1]){
+					start = i;
+			}
+			
+			string->start = start;
+			string->length = (end - start) + 1;
+			string2->length = (string->start - string2->start);
+			*/
+
 		}
+		j = 0;
+			
 	i++;
 	}
 	return string2;

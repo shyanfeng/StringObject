@@ -1,8 +1,6 @@
 #include "unity.h"
 #include "StringObject.h"
 
-#define t (Text *)"\x00\x00\x00\x80"
-
 typedef struct FakeText{
 	uint32 reference;
 	char string[80];
@@ -108,7 +106,7 @@ void test_textDel_name1_statistic_will_not_delete(void){
 
 }
 
-void test_stringNew(void){
+void test_stringNew_dynamic(void){
 	Text *new = textNew("Benson");
 	textDump(new);
 	String *string = stringNew(new);
@@ -283,9 +281,9 @@ void test_stringLength_should_return_length_of_string(void){
 
 }
 
-void test_stringRemoveWordNotContaining_should_remove_dragon_from_dragonball_and_become_ball(void){
+void test_stringRemoveWordNotContaining_should_remove_dragon_from_dregonball_and_become_ball(void){
 
-	String *str = stringNew(textNew("dragonball"));
+	String *str = stringNew(textNew("dregonball"));
 	stringDump(str);
 	String *str2 = stringRemoveWordNotContaining(str, "ball");
 	stringDump(str2);
@@ -299,7 +297,46 @@ void test_stringRemoveWordNotContaining_should_remove_dragon_from_dragonball_and
 
 }
 
-void test_stringRemoveWordContainings_should_remove_ku_from_goku_and_become_go(void){
+void test_stringRemoveWordNotContaining_should_from_askinRobbi_become_aski(void){
+	Text *name = t"BaskinRobbin";
+	textDump(name);
+	String *str = stringNew(name);
+	stringDump(str);
+	str->start++;
+	str->length--;
+	String *str2 = stringRemoveWordNotContaining(str, "onb");
+	stringDump(str2);
+	stringDump(str);
+	
+	TEST_ASSERT_EQUAL('a', str2->text->string[str2->start]);
+	TEST_ASSERT_EQUAL(1, str2->start);
+	TEST_ASSERT_EQUAL(4, str2->length);
+	TEST_ASSERT_EQUAL('n', str->text->string[str->start]);
+	TEST_ASSERT_EQUAL(5, str->start);
+	TEST_ASSERT_EQUAL(6, str->length);
+	
+}
+
+void test_stringRemoveWordNotContaining_static_should_remove_dog_and_become_Bull(void){
+	
+	Text *name = t"Bulldog";
+	textDump(name);
+	String *str = stringNew(name);
+	stringDump(str);
+	String *str2 = stringRemoveWordNotContaining(str, "gd");
+	stringDump(str2);
+	stringDump(str);
+	
+	TEST_ASSERT_EQUAL('d', str->text->string[str->start]);
+	TEST_ASSERT_EQUAL(4, str->start);
+	TEST_ASSERT_EQUAL(3, str->length);
+	TEST_ASSERT_EQUAL('B', str2->text->string[str2->start]);
+	TEST_ASSERT_EQUAL(0, str2->start);
+	TEST_ASSERT_EQUAL(4, str2->length);
+
+}
+
+/*void test_stringRemoveWordContainings_should_remove_ku_from_goku_and_become_go(void){
 
 	String *str = stringNew(textNew("goku"));
 	stringDump(str);
@@ -312,6 +349,17 @@ void test_stringRemoveWordContainings_should_remove_ku_from_goku_and_become_go(v
 	TEST_ASSERT_EQUAL('k', str->text->string[str->start]);
 	TEST_ASSERT_EQUAL(2, str->start);
 	TEST_ASSERT_EQUAL(2, str->length);
+
+}*/
+
+void test_stringRemoveWordContainings_should_remove_lo_from_halo_and_become_ha_with_ah(void){
+
+	String *str = stringNew(textNew("123halo"));
+	stringDump(str);
+	String *str2 = stringRemoveWordContaining(str, "321");
+	stringDump(str2);
+
+	
 
 }
 
@@ -349,6 +397,41 @@ void test_stringIsEqual_have_the_same_characters_should_return_1(void){
 	TEST_ASSERT_EQUAL(7, str->length);
 }
 
+void test_stringIsEqual_dynamic_should_return_1(void){
+	char a;
+	
+
+	String *str = stringNew(textNew("pineapple"));
+	stringDump(str);
+	String *str2 = stringNew(textNew("pineapple"));
+	stringDump(str2);
+	a = stringIsEqual(str, str2);
+	stringDump(str);
+	stringDump(str2);
+	
+	TEST_ASSERT_EQUAL(1, a);
+	TEST_ASSERT_EQUAL(9, str->length);
+}
+
+void test_stringIsEqual_static_should_return_1(void){
+	char a;
+	
+	Text *name = t"apple";
+	textDump(name);
+	String *string = stringNew(name);
+	stringDump(string);
+	Text *name2 = t"apple";
+	textDump(name2);
+	String *string2 = stringNew(name2);
+	stringDump(string2);
+	a = stringIsEqual(string, string2);
+	stringDump(string);
+	stringDump(string2);
+	
+	TEST_ASSERT_EQUAL(1, a);
+	TEST_ASSERT_EQUAL(5, string->length);
+}
+
 void test_stringIsEqualCaseInSensitve_have_same_characters_of_str_and_str2_should_become_lower_case_and_return_1(void){
 	char a;
 	
@@ -378,6 +461,61 @@ void test_stringIsEqualCaseInSensitve_dont_have_same_characters_of_str_and_str2_
 	
 	TEST_ASSERT_EQUAL(0, a);
 	
+}
+
+void test_stringChatAt_in_range_should_return_l_from_hello(void){
+	char a;
+	
+	String *str = stringNew(textNew("Hello"));
+	str->start = 1;
+	a = stringCharAt(str, 2);
+
+	TEST_ASSERT_EQUAL('l', a);
+
+}
+
+void test_stringChatAt_not_in_range_should_return_negative_1(void){
+	char a;
+	
+	String *str = stringNew(textNew("Hello"));
+	str->start = 1;
+	a = stringCharAt(str, 5);
+
+	TEST_ASSERT_EQUAL(-1, a);
+
+}
+
+void test_stringChatAt_is_negative_1_should_return_negative_1(void){
+	char a;
+	
+	String *str = stringNew(textNew("Hello"));
+	str->start = 1;
+	a = stringCharAt(str, -1);
+
+	TEST_ASSERT_EQUAL(-1, a);
+
+}
+
+void test_stringCharAtInSet_should_return_0_when_InSet_does_not_match_any_character_with_str(void){
+	char a;
+	
+	String *str = stringNew(textNew("abcdefgh"));
+	str->start = 2;
+	a = stringCharAtInSet(str, 2, "gyjfjk");
+	
+	TEST_ASSERT_EQUAL(0, a);
+
+}
+
+void test_stringCharAtInSet_should_return_1_when_InSet_match_an_character_with_str(void){
+	char a;
+	
+	String *str = stringNew(textNew("abcdefgh"));
+	str->start = 2;
+	a = stringCharAtInSet(str, 2, "polze");
+	
+	TEST_ASSERT_EQUAL(1, a);
+
 }
 
 
