@@ -1,14 +1,10 @@
 #ifndef StringObject_H
 #define StringObject_H
-
+#include "Text.h"
 #include "Types.h"
 #define isSpace(ch) (ch == ' ' || ch == '\t')
 #define t (Text *)"\x00\x00\x00\x80"
 
-typedef struct Text{
-	uint32 reference;
-	char string[0];
-}Text;
 
 typedef struct String{
 	uint32 reference;
