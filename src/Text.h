@@ -1,7 +1,7 @@
 #ifndef Text_H
 #define Text_H
 
-#include "StringObject.h"
+
 #include "Types.h"
 #define isSpace(ch) (ch == ' ' || ch == '\t')
 #define t (Text *)"\x00\x00\x00\x80"

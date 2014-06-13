@@ -1,7 +1,8 @@
 #ifndef StringObject_H
 #define StringObject_H
-#include "Text.h"
+
 #include "Types.h"
+#include "Text.h"
 #define isSpace(ch) (ch == ' ' || ch == '\t')
 #define t (Text *)"\x00\x00\x00\x80"
 
@@ -14,10 +15,6 @@ typedef struct String{
 }String;
 
 void stringDump(String *string);
-void textDump(Text *text);
-Text *textNew(char *charStr);
-Text *textAssign(Text *text);
-Text *textDel(Text *text);
 String *stringNew(Text *text);
 String *stringAssign(String *string);
 String *stringDel(String *string);
