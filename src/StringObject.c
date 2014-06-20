@@ -4,6 +4,47 @@
 #include "StringObject.h"
 #include "Text.h"
 
+Text *stringSubstringInText(String *str, int relativePosition, int length){
+	char *charStr = stringSubstringInChar(str, relativePosition, length);
+	Text *text = textNew(charStr);
+	free(charStr);
+	
+	return text;
+}
+
+int stringToInteger(String *str){
+	int intValue;
+	
+	char *charStr = stringSubstringInChar(str, str->start, str->length);
+	intValue = atoi(charStr);
+	free(charStr);
+	
+	return intValue;
+	
+}
+
+char *stringSubstringInChar(String *str, int relativePosition, int length){
+	int i = 0;
+	int j = relativePosition;
+	char *toChar = malloc(sizeof(char) * (length + 1));
+	
+	if(length > str->length){
+		return " ";
+	}
+	
+	while(j <= (relativePosition + length - 1)){
+
+		toChar[i] = str->text->string[j];
+		printf("%c\n", toChar[i]);
+		
+		i++;
+		j++;
+	}
+	toChar[i] = 0;
+	return toChar;
+}
+
+
 int stringCharAtInSet(String *str, int relativeIndex, char set[]){
 	int i = 0;
 	

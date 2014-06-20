@@ -32,4 +32,9 @@ int stringIsEqualCaseInSensitve(String *string1, String *string2);
 int stringCharAt(String *str, int relativeIndex);
 int stringCharAtInSet(String *str, int relativeIndex, char set[]);
 
+char *stringSubstringInChar(String *str, int relativePosition, int length);
+int stringToInteger(String *str);
+Text *stringSubstringInText(String *str, int relativePosition, int length);
+
+
 #endif // StringObject_H

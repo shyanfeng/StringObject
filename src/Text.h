@@ -17,4 +17,5 @@ Text *textNew(char *charStr);
 Text *textAssign(Text *text);
 Text *textDel(Text *text);
 
+
 #endif // Text_H

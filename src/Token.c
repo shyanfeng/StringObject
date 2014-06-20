@@ -36,7 +36,7 @@ OperatorInfo alternativeOperatorTable[] = {
  *   value  is the value to initialized with
  */
 Number *numberNew(int value) {
-  Number *number = malloc(sizeof(Number));
+  Number *number = malloc(sizeof(value));
   
   number->type = NUMBER_TOKEN;
   number->value = value;
@@ -51,7 +51,7 @@ Number *numberNew(int value) {
  */
 Operator *operatorNewBySymbol(char *symbol) {
 	
-	Operator *isSymbol = malloc(sizeof(Operator));
+	Operator *isSymbol = malloc(sizeof(symbol));
 	int i;
 	isSymbol->type = OPERATOR_TOKEN;
 
@@ -60,12 +60,6 @@ Operator *operatorNewBySymbol(char *symbol) {
 			isSymbol->info = &mainOperatorTable[i];
 		}
 	}
-	
-	// if(isSymbol->info->symbol == 0){
-		// return isSymbol;
-	// }else{
-		// return NULL;
-	// }
 	
 	return isSymbol;
 }
@@ -78,7 +72,18 @@ Operator *operatorNewBySymbol(char *symbol) {
  *          and CLOSING_BRACKET_OP.
  */
 Operator *operatorNewByID(OperatorID id) {
-  return NULL;
+	
+	Operator *isId = malloc(sizeof(id));
+	int i;
+	isId->type = OPERATOR_TOKEN;
+
+	for(i = 0; i < 14; i++){
+		if(mainOperatorTable[i].id == id){
+			isId->info = &mainOperatorTable[i];
+		}
+	}
+	
+	return isId;
 }
 
 /**
@@ -90,7 +95,7 @@ Operator *operatorNewByID(OperatorID id) {
  */
 Identifier *identifierNew(Text *name) {
 	
-	Identifier *iName = malloc(sizeof(Identifier));
+	Identifier *iName = malloc(sizeof(name));
   int compare;
 	iName->type = IDENTIFIER_TOKEN;
 	iName->name = name;
