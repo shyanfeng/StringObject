@@ -76,6 +76,7 @@ typedef struct {
 Number *numberNew(int value);
 Operator *operatorNewBySymbol(char *symbol);
 Operator *operatorNewByID(OperatorID id);
+void tokenDel(Token *token);
 Identifier *identifierNew(Text *name);
 Token *getToken(String *str);
 

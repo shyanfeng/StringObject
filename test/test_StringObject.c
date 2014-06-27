@@ -243,9 +243,9 @@ void test_stringRemoveWordNotContaining_static_should_remove_dog_and_become_Bull
 
 void test_stringRemoveWordContainings_should_remove_lo_from_halo_and_become_ha_with_ah(void){
 
-	String *str = stringNew(textNew("123halo"));
+	String *str = stringNew(textNew("abc123"));
 	stringDump(str);
-	String *str2 = stringRemoveWordContaining(str, "321");
+	String *str2 = stringRemoveWordContaining(str, "abc");
 	stringDump(str2);
 
 	

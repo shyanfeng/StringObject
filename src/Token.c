@@ -2,6 +2,8 @@
 #include "Token.h"
 #include "CharSet.h"
 #include <malloc.h>
+#include "ErrorCode.h"
+#include "CException.h"
 
 #define MAIN_OPERATOR_TABLE_SIZE (sizeof(mainOperatorTable)/sizeof(OperatorInfo))
 #define ALTERNATIVE_OPERATOR_TABLE_SIZE (sizeof(alternativeOperatorTable)/sizeof(OperatorInfo))
@@ -96,7 +98,7 @@ Operator *operatorNewByID(OperatorID id) {
 Identifier *identifierNew(Text *name) {
 	
 	Identifier *iName = malloc(sizeof(name));
-  int compare;
+	int compare;
 	iName->type = IDENTIFIER_TOKEN;
 	iName->name = name;
 	iName->number->value = 0;
@@ -121,5 +123,72 @@ Identifier *identifierNew(Text *name) {
  *    Number, Operator, and Identifier tokens
  */
 Token *getToken(String *str) {
-  return NULL;
+	Token *tokenizer;
+	stringTrimLeft(str);
+	/*
+	 * Number token
+	*/
+	if(stringCharAtInSet(str, str->start, numberSet)){
+		int value;
+		
+		value = stringToInteger(str);
+		
+		if(isSpace(stringCharAt(str, 0))){
+			Number *numberNew = stringToInteger(str);	
+		}/*else{
+			Throw(ERR_NUMBER_NOT_WELL_FORMED);
+		}*/
+		
+		return (Token *)numberNew(value);
+	}
+	
+	/*
+	 * Operator token
+	*/
+	if(stringCharAtInSet(str, str->start, operatorSet)){
+		char getOperator[3];
+		
+		getOperator[0] = (char)stringRemoveChar(str);
+		getOperator[1] = 0;
+		
+		if(stringCharAt(str, 0) == getOperator[0]){
+			if(stringCharAt(str, 0) == '&'){
+				getOperator[0] = '&';
+				getOperator[1] = getOperator[0];
+				getOperator[2] = 0;
+			}else if(stringCharAt(str, 0) == '|'){
+				getOperator[0] = '|';
+				getOperator[1] = getOperator[0];
+				getOperator[2] = 0;
+			}else{
+				Throw(ERR_NUMBER_NOT_WELL_FORMED);
+			}
+		}
+		
+		/*if(isSpace(stringCharAt(str, 0))){
+			operatorNewBySymbol
+		}*/
+		
+		return (Token *)operatorNewBySymbol(getOperator);
+	}
+	/*
+	*
+	*/
+	if(stringCharAtInSet(str, str->start, alphabetSet)){
+		String *getIdentifier;
+		getIdentifier = stringRemoveWordContaining(str, alphabetSet);
+		//str->number = NULL;
+		
+		return (Token *)identifierNew(stringSubstringInText(getIdentifier, 0, getIdentifier->length));
+		
+	}
+	
 }
+
+void tokenDel(Token *token){
+	
+	
+
+
+}
+

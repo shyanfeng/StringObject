@@ -3,6 +3,7 @@
 #include "Text.h"
 #include "StringObject.h"
 #include "CharSet.h"
+#include "CException.h"
 
 void setUp(void) {}
 
@@ -104,11 +105,125 @@ void test_operatorNewByID_with_DIV_OP_id_should_return_token_type_if_the_id_is_i
 	
 }
 
-void test_getToken(void){
-
+void test_getToken_number_123_should_return_NUMBER_TOKEN(void){
 	
+	Text *text = textNew("123");
+	String *strToken = stringNew(text);
+	Token *tokenGet;
+	tokenGet = getToken(strToken);
+	printf("%d", tokenGet->value);
+	
+	TEST_ASSERT_NOT_NULL(tokenGet);
+	TEST_ASSERT_EQUAL(NUMBER_TOKEN, tokenGet->type);
+	TEST_ASSERT_EQUAL(123, tokenGet->value);
+	
+}
 
+void test_getToken_number_123_space_456_should_return_NUMBER_TOKEN(void){
+	
+	Text *text = textNew("456 789");
+	String *strToken = stringNew(text);
+	Token *tokenGet;
+	tokenGet = getToken(strToken);
+	printf("%d", tokenGet->value);
+	
+	TEST_ASSERT_NOT_NULL(tokenGet);
+	TEST_ASSERT_EQUAL(NUMBER_TOKEN, tokenGet->type);
+	TEST_ASSERT_EQUAL(456, tokenGet->value);
+	//TEST_ASSERT_EQUAL_STRING(" 789", strToken);
+	
+}
+
+/*void test_getToken_number_123M_should_throw_error(void){
+	int e;
+	
+	Text *text = textNew("123M");
+	String *strToken = stringNew(text);
+	Token *tokenGet;
+	tokenGet = getToken(strToken);
+	
+	Try{
+		tokenGet = getToken(strToken);
+	}Catch(e){
+		TEST_ASSERT_EQUAL("ERR_NUMBER_NOT_WELL_FORMED", e);
+	}
+	
+}*/
+
+void test_getToken_operator_plus_should_return_OPERATOR_TOKEN(void){
+
+	Text *text = textNew("+");
+	String *strToken = stringNew(text);
+	Token *tokenGet;
+	tokenGet = getToken(strToken);
+	printf("%s\n", ((Operator *)tokenGet)->info->symbol);
+	
+	TEST_ASSERT_EQUAL(OPERATOR_TOKEN, tokenGet->type);
 
 }
 
+void test_getToken_operator_and_should_return_OPERATOR_TOKEN(void){
+
+	Text *text = textNew("&");
+	String *strToken = stringNew(text);
+	Token *tokenGet;
+	tokenGet = getToken(strToken);
+	printf("%s", ((Operator *)tokenGet)->info->symbol);
+	
+	TEST_ASSERT_EQUAL(OPERATOR_TOKEN, tokenGet->type);
+
+}
+
+void test_getToken_operator_and_and_should_return_OPERATOR_TOKEN(void){
+
+	Text *text = textNew("&&");
+	String *strToken = stringNew(text);
+	Token *tokenGet;
+	tokenGet = getToken(strToken);
+	printf("%s", ((Operator *)tokenGet)->info->symbol);
+	
+	TEST_ASSERT_EQUAL(OPERATOR_TOKEN, tokenGet->type);
+
+}
+
+void test_getToken_operator_or_or_should_return_OPERATOR_TOKEN(void){
+
+	Text *text = textNew("||");
+	String *strToken = stringNew(text);
+	Token *tokenGet;
+	tokenGet = getToken(strToken);
+	printf("%s", ((Operator *)tokenGet)->info->symbol);
+	
+	TEST_ASSERT_EQUAL(OPERATOR_TOKEN, tokenGet->type);
+
+}
+
+void test_getToken_operator_and_with_plus_should_throw_error(void){
+	int e;
+	
+	Text *text = textNew("&+");
+	String *strToken = stringNew(text);
+	Token *tokenGet;
+	tokenGet = getToken(strToken);
+
+	Try{
+		tokenGet = getToken(strToken);
+	}Catch(e){
+		TEST_ASSERT_EQUAL("ERR_NUMBER_NOT_WELL_FORMED", e);
+	}
+
+}
+
+void test_getToken_identifier_Night_should_return_IDENTIFIER_TOKEN(void){
+
+	Text *text = textNew("Night");
+	String *strToken = stringNew(text);
+	Token *tokenGet;
+	tokenGet = getToken(strToken);
+	printf("%s", ((Identifier *)tokenGet)->name->string);
+	
+	TEST_ASSERT_EQUAL(IDENTIFIER_TOKEN, tokenGet->type);
+
+
+}
 

@@ -146,6 +146,7 @@ String *stringRemoveWordContaining(String *string, char containSet[]){
 	int i = string->start;
 	int j = 0;
 	int status = 0;
+	
 	String *string2 = stringNew(string->text);
 	string2->start = 0;
 	string2->length = 0;
@@ -164,7 +165,6 @@ String *stringRemoveWordContaining(String *string, char containSet[]){
 				string->start = i;
 				string->length = string->length - i;
 
-				return string2;
 		}
 		j = 0;
 	i++;
@@ -222,14 +222,14 @@ int stringLength(String *string){
 int stringRemoveChar(String *string){
 	
 	char a = string->text->string[string->start];
-	char b = string->text->string[string->length];
 	
-	if(a != b){
-	string->start++;
-	string->length--;
+	if(string->length != 0){
+		string->start++;
+		string->length--;
+		return a;
+	}else{
+		return -1;
 	}
-	
-	return -1;
 }
 
 void stringTrim(String *string){
