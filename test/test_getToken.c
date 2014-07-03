@@ -260,19 +260,20 @@ void test_getToken_space_or_or_space_896_space_name_should_return_NUMBER_TOKEN_a
 	Token *tokenGet;
 
 	tokenGet = getToken(strToken);
+	stringDump(strToken);
 	printf("%s\n", ((Operator *)tokenGet)->info->symbol);
 	TEST_ASSERT_EQUAL(OPERATOR_TOKEN, tokenGet->type);
 	
 	tokenGet = getToken(strToken);
 	stringDump(strToken);
-	printf("%d", ((Number *)tokenGet)->value);
+	printf("%d\n", ((Number *)tokenGet)->value);
 	TEST_ASSERT_EQUAL(NUMBER_TOKEN, tokenGet->type);
 	TEST_ASSERT_EQUAL(896, ((Number *)tokenGet)->value);
 	
-	/*tokenGet = getToken(strToken);
+	tokenGet = getToken(strToken);
 	stringDump(strToken);
-	printf("%s", ((Identifier *)tokenGet)->name->string);
+	printf("%s\n", ((Identifier *)tokenGet)->name->string);
 	TEST_ASSERT_EQUAL(IDENTIFIER_TOKEN, tokenGet->type);
-	TEST_ASSERT_EQUAL_STRING("name", ((Identifier *)tokenGet)->name->string);*/
+	TEST_ASSERT_EQUAL_STRING("name", ((Identifier *)tokenGet)->name->string);
 
 }

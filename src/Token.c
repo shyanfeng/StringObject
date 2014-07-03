@@ -123,7 +123,7 @@ Token *getToken(String *str) {
 	
 	// Number token
 	
-	if(stringCharAtInSet(str, str->start, numberSet)){
+	if(stringCharAtInSet(str, 0, numberSet)){
 		String *strNum = stringRemoveWordContaining(str, numberSet);
 		
 		if(isSpace(stringCharAt(str, 0)) || str->length == 0){
@@ -139,7 +139,7 @@ Token *getToken(String *str) {
 	/*
 	 * Operator token
 	*/
-	if(stringCharAtInSet(str, str->start, operatorSet)){
+	if(stringCharAtInSet(str, 0, operatorSet)){
 		char getOperator[3];
 		
 		getOperator[0] = (char)stringRemoveChar(str);
@@ -175,7 +175,7 @@ Token *getToken(String *str) {
 	/*
 	 * Identifier
 	*/
-	if(stringCharAtInSet(str, str->start, alphabetSet)){
+	if(stringCharAtInSet(str, 0, alphabetSet)){
 		String *getIdentifier;
 		getIdentifier = stringRemoveWordContaining(str, alphabetSet);
 		
