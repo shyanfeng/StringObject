@@ -157,6 +157,9 @@ Token *getToken(String *str) {
 			}else{
 				Throw(ERR_NUMBER_NOT_WELL_FORMED);
 			}
+			
+			str->start++;
+			str->length--;
 		}
 		
 		if(isSpace(stringCharAt(str, 0)) || str->length == 0){

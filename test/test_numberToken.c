@@ -148,15 +148,14 @@ void test_getToken_operator_space_or_or_should_return_OPERATOR_TOKEN(void){
 void test_getToken_operator_and_with_plus_should_throw_error(void){
 	int e;
 	
-	Text *text = textNew("&+");
+	Text *text = textNew("@1");
 	String *strToken = stringNew(text);
 	Token *tokenGet;
-	tokenGet = getToken(strToken);
 
 	Try{
 		tokenGet = getToken(strToken);
 	}Catch(e){
-		TEST_ASSERT_EQUAL("ERR_NUMBER_NOT_WELL_FORMED", e);
+		TEST_ASSERT_EQUAL(ERR_NUMBER_NOT_WELL_FORMED, e);
 	}
 
 }
@@ -173,7 +172,7 @@ void test_getToken_operator_space_and_and_space_123_should_return_OPERATOR_TOKEN
 
 }
 
-/*void test_getToken_operator_space_or_or_a_space_123_should_return_OPERATOR_TOKEN(void){
+void test_getToken_operator_space_or_or_a_space_123_should_return_OPERATOR_TOKEN(void){
 	int e;
 	
 	Text *text = textNew(" ||a 123");
@@ -186,7 +185,7 @@ void test_getToken_operator_space_and_and_space_123_should_return_OPERATOR_TOKEN
 		TEST_ASSERT_EQUAL(ERR_NUMBER_NOT_WELL_FORMED, e);
 	}
 
-}*/
+}
 
 void test_getToken_identifier_Night_should_return_IDENTIFIER_TOKEN(void){
 
@@ -251,5 +250,29 @@ void test_getToken_identifier_space_TDD_plus_123_should_throw_error(void){
 	}Catch(e){
 		TEST_ASSERT_EQUAL(ERR_NUMBER_NOT_WELL_FORMED, e);
 	}
+
+}
+
+void test_getToken_space_or_or_space_896_space_name_should_return_NUMBER_TOKEN_and_IDENTIFIER_TOKEN_and_OPERATOR_TOKEN(void){
+
+	Text *text = textNew(" || 896 name");
+	String *strToken = stringNew(text);
+	Token *tokenGet;
+
+	tokenGet = getToken(strToken);
+	printf("%s\n", ((Operator *)tokenGet)->info->symbol);
+	TEST_ASSERT_EQUAL(OPERATOR_TOKEN, tokenGet->type);
+	
+	tokenGet = getToken(strToken);
+	stringDump(strToken);
+	printf("%d", ((Number *)tokenGet)->value);
+	TEST_ASSERT_EQUAL(NUMBER_TOKEN, tokenGet->type);
+	TEST_ASSERT_EQUAL(896, ((Number *)tokenGet)->value);
+	
+	/*tokenGet = getToken(strToken);
+	stringDump(strToken);
+	printf("%s", ((Identifier *)tokenGet)->name->string);
+	TEST_ASSERT_EQUAL(IDENTIFIER_TOKEN, tokenGet->type);
+	TEST_ASSERT_EQUAL_STRING("name", ((Identifier *)tokenGet)->name->string);*/
 
 }

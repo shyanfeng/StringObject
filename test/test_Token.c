@@ -138,15 +138,3 @@ void test_operatorNewByID_with_MOD_OP_id_should_return_token_type_if_the_id_is_i
 	TEST_ASSERT_EQUAL(OPERATOR_TOKEN, isId->type);
 	
 }
-
-/*void test_getToken_operator_minus_should_return_OPERATOR_TOKEN(void){
-
-	Text *text = textNew("-");
-	String *strToken = stringNew(text);
-	Token *tokenGet;
-	tokenGet = getToken(strToken);
-	printf("%s", ((Operator *)tokenGet)->info->symbol);
-	
-	TEST_ASSERT_EQUAL(OPERATOR_TOKEN, tokenGet->type);
-
-}*/
