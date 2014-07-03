@@ -80,7 +80,7 @@ void test_stringTrimLeft_should_remove_the_2_spaces_on_left(void){
 	stringDump(str);
 	
 	TEST_ASSERT_EQUAL(2, str->start);
-	TEST_ASSERT_EQUAL(7, str->length);
+	TEST_ASSERT_EQUAL(5, str->length);
 
 }
 
@@ -90,7 +90,7 @@ void test_stringTrimLeft_should_remove_the_2_spaces_and_tab_on_left(void){
 	stringDump(str);
 	
 	TEST_ASSERT_EQUAL(3, str->start);
-	TEST_ASSERT_EQUAL(8, str->length);
+	TEST_ASSERT_EQUAL(5, str->length);
 
 }
 
@@ -120,7 +120,7 @@ void test_stringTrim_should_remove_the_2_spaces_on_left_and_2_spaces_on_right(vo
 	stringDump(str);
 	
 	TEST_ASSERT_EQUAL(2, str->start);
-	TEST_ASSERT_EQUAL(9, str->length);
+	TEST_ASSERT_EQUAL(5, str->length);
 
 }
 
@@ -130,7 +130,7 @@ void test_stringTrim_should_remove_the_2_spaces_and_tab_on_left_and_2_spaces_and
 	stringDump(str);
 	
 	TEST_ASSERT_EQUAL(3, str->start);
-	TEST_ASSERT_EQUAL(11, str->length);
+	TEST_ASSERT_EQUAL(5, str->length);
 
 }
 
@@ -241,14 +241,78 @@ void test_stringRemoveWordNotContaining_static_should_remove_dog_and_become_Bull
 
 }
 
-void test_stringRemoveWordContainings_should_remove_lo_from_halo_and_become_ha_with_ah(void){
+void test_stringRemoveWordContainings_should_remove_123_from_123abc_and_become_abc(void){
 
-	String *str = stringNew(textNew("abc123"));
+	String *str = stringNew(textNew("123abc"));
 	stringDump(str);
-	String *str2 = stringRemoveWordContaining(str, "abc");
+	String *str2 = stringRemoveWordContaining(str, "312");
 	stringDump(str2);
+	stringDump(str);
 
-	
+	TEST_ASSERT_EQUAL(0, str2->start);
+	TEST_ASSERT_EQUAL(3, str2->length);
+	TEST_ASSERT_EQUAL(3, str->start);
+	TEST_ASSERT_EQUAL(3, str->length);
+
+}
+
+void test_stringRemoveWordContainings_should_remove_1234_from_1234qwer_and_become_qwer(void){
+
+	String *str = stringNew(textNew("1234qwer"));
+	stringDump(str);
+	String *str2 = stringRemoveWordContaining(str, "3412");
+	stringDump(str2);
+	stringDump(str);
+
+	TEST_ASSERT_EQUAL(0, str2->start);
+	TEST_ASSERT_EQUAL(4, str2->length);
+	TEST_ASSERT_EQUAL(4, str->start);
+	TEST_ASSERT_EQUAL(4, str->length);
+
+}
+
+void test_stringRemoveWordContainings_should_not_remove_abc_from_123abc(void){
+
+	String *str = stringNew(textNew("732abc"));
+	stringDump(str);
+	String *str2 = stringRemoveWordContaining(str, "ab");
+	stringDump(str2);
+	stringDump(str);
+
+	TEST_ASSERT_EQUAL(0, str2->start);
+	TEST_ASSERT_EQUAL(0, str2->length);
+	TEST_ASSERT_EQUAL(0, str->start);
+	TEST_ASSERT_EQUAL(6, str->length);
+
+}
+
+void test_stringRemoveWordContainings_should_not_remove_a_from_4a6b7c(void){
+
+	String *str = stringNew(textNew("4a6b7c"));
+	stringDump(str);
+	String *str2 = stringRemoveWordContaining(str, "a");
+	stringDump(str2);
+	stringDump(str);
+
+	TEST_ASSERT_EQUAL(0, str2->start);
+	TEST_ASSERT_EQUAL(0, str2->length);
+	TEST_ASSERT_EQUAL(0, str->start);
+	TEST_ASSERT_EQUAL(6, str->length);
+
+}
+
+void test_stringRemoveWordContainings_should_remove_a_from_4a6b7c(void){
+
+	String *str = stringNew(textNew("bum123"));
+	stringDump(str);
+	String *str2 = stringRemoveWordContaining(str, "mub");
+	stringDump(str2);
+	stringDump(str);
+
+	TEST_ASSERT_EQUAL(0, str2->start);
+	TEST_ASSERT_EQUAL(3, str2->length);
+	TEST_ASSERT_EQUAL(3, str->start);
+	TEST_ASSERT_EQUAL(3, str->length);
 
 }
 

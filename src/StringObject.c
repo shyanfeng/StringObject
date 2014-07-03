@@ -145,30 +145,43 @@ String *stringRemoveWordContaining(String *string, char containSet[]){
 	
 	int i = string->start;
 	int j = 0;
-	int status = 0;
+	int k = 0;
+	int status;
+	int conValue = 0;
 	
 	String *string2 = stringNew(string->text);
-	string2->start = 0;
+	string2->start = string->start;
 	string2->length = 0;
+	
+	while(containSet[k] > string->length){
+		conValue++;
+		k++;
+	}
+
 
 	while(string->text->string[i] != 0){
 		while(containSet[j] != 0){
 			if(string->text->string[i] == containSet[j]){
-				status = 1;
-				
+				string2->length++;
+				string->start++;
+				string->length--;
+				goto getValue;
+			}else{
+				status++;
 			}
 			j++;
 		}
-		if(status == 1){
-			string2->start = string->start;
-				string2->length = i - string->start;
-				string->start = i;
-				string->length = string->length - i;
-
+		
+		if(status >= conValue){
+			return string2;
 		}
+		
+		getValue:
 		j = 0;
-	i++;
+		i++;
 	}
+
+	
 	return string2;
 
 }
@@ -259,6 +272,7 @@ void stringTrimLeft(String *string){
 		i++;
 		ch = string->text->string[i];
 		string->start++;
+		string->length--;
 	}
 	
 }

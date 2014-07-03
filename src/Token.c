@@ -4,9 +4,10 @@
 #include <malloc.h>
 #include "ErrorCode.h"
 #include "CException.h"
+#include "CustomTypeAssert.h"
 
-#define MAIN_OPERATOR_TABLE_SIZE (sizeof(mainOperatorTable)/sizeof(OperatorInfo))
-#define ALTERNATIVE_OPERATOR_TABLE_SIZE (sizeof(alternativeOperatorTable)/sizeof(OperatorInfo))
+#define MAIN_OPERATOR_TABLE_SIZE	(sizeof(mainOperatorTable)/sizeof(OperatorInfo))
+#define	ALTERNATIVE_OPERATOR_TABLE_SIZE	(sizeof(alternativeOperatorTable)/sizeof(OperatorInfo))
 
 OperatorInfo mainOperatorTable[] = {
   {.symbol="~", .id=BITWISE_NOT_OP, .precedence=150, .affix=INFIX, .assoc=LEFT_TO_RIGHT},
@@ -53,7 +54,7 @@ Number *numberNew(int value) {
  */
 Operator *operatorNewBySymbol(char *symbol) {
 	
-	Operator *isSymbol = malloc(sizeof(symbol));
+	Operator *isSymbol = malloc(sizeof(isSymbol));
 	int i;
 	isSymbol->type = OPERATOR_TOKEN;
 
@@ -101,14 +102,8 @@ Identifier *identifierNew(Text *name) {
 	int compare;
 	iName->type = IDENTIFIER_TOKEN;
 	iName->name = name;
-	iName->number->value = 0;
+	iName->number = NULL;
 
-	// compare = strcmp(iName->name->string);
-	// if(compare == 0){
-		// return 1;
-	// }else{
-		// return 0;
-	// }
 	return iName;
 }
 
@@ -125,21 +120,20 @@ Identifier *identifierNew(Text *name) {
 Token *getToken(String *str) {
 	Token *tokenizer;
 	stringTrimLeft(str);
-	/*
-	 * Number token
-	*/
+	
+	// Number token
+	
 	if(stringCharAtInSet(str, str->start, numberSet)){
-		int value;
+		String *strNum = stringRemoveWordContaining(str, numberSet);
 		
-		value = stringToInteger(str);
-		
-		if(isSpace(stringCharAt(str, 0))){
-			Number *numberNew = stringToInteger(str);	
-		}/*else{
+		if(isSpace(stringCharAt(str, 0)) || str->length == 0){
+			goto returnToken;
+		}else{
+			free(strNum);
 			Throw(ERR_NUMBER_NOT_WELL_FORMED);
-		}*/
-		
-		return (Token *)numberNew(value);
+		}
+		returnToken:
+		return (Token *)numberNew(stringToInteger(strNum));
 	}
 	
 	/*
@@ -165,21 +159,32 @@ Token *getToken(String *str) {
 			}
 		}
 		
-		/*if(isSpace(stringCharAt(str, 0))){
-			operatorNewBySymbol
-		}*/
+		if(isSpace(stringCharAt(str, 0)) || str->length == 0){
+			goto returnOperator;
+		}else{
+			Throw(ERR_NUMBER_NOT_WELL_FORMED);
+		}
 		
+		returnOperator:
 		return (Token *)operatorNewBySymbol(getOperator);
 	}
+	
 	/*
-	*
+	 * Identifier
 	*/
 	if(stringCharAtInSet(str, str->start, alphabetSet)){
 		String *getIdentifier;
 		getIdentifier = stringRemoveWordContaining(str, alphabetSet);
-		//str->number = NULL;
 		
-		return (Token *)identifierNew(stringSubstringInText(getIdentifier, 0, getIdentifier->length));
+		if(isSpace(stringCharAt(str, 0)) || str->length == 0){
+			goto returnIdentifier;
+		}else{
+			free(getIdentifier);
+			Throw(ERR_NUMBER_NOT_WELL_FORMED);
+		}
+		
+		returnIdentifier:
+		return (Token *)identifierNew(stringSubstringInText(getIdentifier, getIdentifier->start, getIdentifier->length));
 		
 	}
 	
