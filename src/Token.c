@@ -195,7 +195,24 @@ Token *getToken(String *str) {
 
 void tokenDel(Token *token){
 	
+	if(token->type == IDENTIFIER_TOKEN){
+		textDel(((Identifier *)token)->name);
+		if(((Identifier *)token)->number){
+			free(((Identifier *)token)->number);
+		}
+	}
 	
+	if(token->type == NUMBER_TOKEN){
+		if(((Number *)token)->value){
+			((Number *)token)->value = 0;
+		}
+	}
+	
+	if(token->type == OPERATOR_TOKEN){
+		free(((Operator *)token)->info->symbol);
+	}
+	
+	free(token);
 
 
 }

@@ -11,7 +11,7 @@ void setUp(void) {}
 
 void tearDown(void) {}
 
-void test_getToken_number_123_should_return_NUMBER_TOKEN(void){
+/*void test_getToken_number_123_should_return_NUMBER_TOKEN(void){
 	
 	Text *text = textNew("123");
 	String *strToken = stringNew(text);
@@ -276,4 +276,4 @@ void test_getToken_space_or_or_space_896_space_name_should_return_NUMBER_TOKEN_a
 	TEST_ASSERT_EQUAL(IDENTIFIER_TOKEN, tokenGet->type);
 	TEST_ASSERT_EQUAL_STRING("name", ((Identifier *)tokenGet)->name->string);
 
-}
+}*/
