@@ -20,23 +20,26 @@ void test_fa_should_mock_and_return_123(void){
 	extractValue_ExpectAndReturn(str, 123);
 	
 	value = fa(str);
-	
+
 	TEST_ASSERT_EQUAL(123, value);
 }
 
-/*void test_fa_over_range_should_mock_and_throw_error(void){
+void test_fa_over_range_should_mock_and_throw_error(void){
 	int value;
 	int e;
 	
-	Text *text = textNew("333");
+	Text *text = textNew("");
 	String *str = stringNew(text);
 	
 	extractValue_ExpectAndReturn(str, 333);
 	
 	Try{
 		value = fa(str);
+		printf("aaa");
 	}Catch(e){
-		TEST_ASSERT_EQUAL(ERR_OPERAND, e);
+		
+		TEST_ASSERT_EQUAL(ERR_EMPTY_VALUE, e);
+		
 	}
 	
-}*/
+}

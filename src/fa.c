@@ -11,16 +11,37 @@
 int fa(String *arguments){
 	int operand1;
 	int operand2;
-	int BANKED;
-	int ACCESS;
-	operand1 = extractValue(arguments);
-	operand2 =extractAccessBanked(arguments);
+	int e;
 	
-	
-	if(operand1>>8 > 1){
-		operand2 = BANKED;
-	}else if(operand1>>8 == 1){
-		operand2 = ACCESS;
+	Try{
+		operand1 = extractValue(arguments);
+		printf("%d\n", operand1);
+	}Catch(e){
+		if(e != ERR_EMPTY_VALUE){
+			operand2 =extractAccessBanked(arguments);
+		}else
+			Throw(ERR_EMPTY_VALUE);
 	}
+	
+	return operand1;
 }
 
+/*int operand_2(String *arguments){
+	int operand1;
+	int operand2;
+	int opcode;
+	int BANKED = 1;
+	int ACCESS = 0;
+	int e;
+	
+	Try{
+		operand1 = fa(arguments);
+	}Catch(e){
+		if(e != ERR_EMPTY_VALUE){
+			operand2 =extractAccessBanked(arguments);
+		}else
+			Throw(ERR_EMPTY_VALUE);
+	}
+	
+	return opcode = operand1;
+}*/

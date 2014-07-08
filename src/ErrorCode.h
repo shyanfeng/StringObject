@@ -3,6 +3,7 @@
 
 typedef enum {
   ERR_NO_ERROR,
+  ERR_EMPTY_VALUE,
   ERR_NUMBER_NOT_WELL_FORMED,
   ERR_OPERAND
 } ErrorCode;
