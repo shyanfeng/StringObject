@@ -31,13 +31,11 @@ void test_fa_over_range_should_mock_and_throw_error(void){
 	Text *text = textNew("");
 	String *str = stringNew(text);
 	
-	extractValue_ExpectAndReturn(str, 333);
+	extractValue_ExpectAndThrow(str, 1);
 	
 	Try{
 		value = fa(str);
-		printf("aaa");
 	}Catch(e){
-		
 		TEST_ASSERT_EQUAL(ERR_EMPTY_VALUE, e);
 		
 	}

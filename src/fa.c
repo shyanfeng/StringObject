@@ -18,8 +18,10 @@ int fa(String *arguments){
 		printf("%d\n", operand1);
 	}Catch(e){
 		if(e != ERR_EMPTY_VALUE){
-			operand2 =extractAccessBanked(arguments);
+			printf("aaa");
+			//operand2 =extractAccessBanked(arguments);
 		}else
+			printf("Error Throw");
 			Throw(ERR_EMPTY_VALUE);
 	}
 	
