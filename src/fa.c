@@ -11,19 +11,39 @@
 int fa(String *arguments){
 	int operand1;
 	int operand2;
+	int BANKED = 1;
+	int ACCESS = 0;
 	int e;
+	int error;
 	
 	Try{
 		operand1 = extractValue(arguments);
-		printf("%d\n", operand1);
 	}Catch(e){
-		if(e != ERR_EMPTY_VALUE){
-			printf("aaa");
-			//operand2 =extractAccessBanked(arguments);
-		}else
+		if(e == ERR_NO_ERROR){
+			printf("aaa\n");
+			operand1 = operand1 & 0x01;
+			Try{
+				operand2 =extractAccessBanked(arguments);
+			}Catch(error){
+				if(error == ERR_NO_ERROR){
+					printf("bbb\n");
+					if(operand1 == 0){
+						printf("ccc\n");
+						operand2 = ACCESS;
+						printf("%d", operand2);
+					}else{
+						printf("ddd\n");
+						operand2 = BANKED;
+					}
+				}else{
+					// operand2 = ACCESS;
+				}
+			}
+		}else{
 			printf("Error Throw");
 			Throw(ERR_EMPTY_VALUE);
-	}
+		}
+	} 
 	
 	return operand1;
 }
