@@ -11,34 +11,6 @@ void setUp(void){}
 
 void tearDown(void){}
 
-/*void test_fa_should_mock_and_return_123(void){
-	int value;
-	
-	Text *text = textNew("123");
-	String *str = stringNew(text);
-	
-	extractValue_ExpectAndThrow(str, 0);
-	
-	value = fa(str);
-	extractValue_ExpectAndReturn(str, 123);
-
-	TEST_ASSERT_EQUAL(123, value);
-}*/
-
-/*void test_fa_should_mock_and_return_456(void){
-	int value;
-	
-	Text *text = textNew("456");
-	String *str = stringNew(text);
-	
-	extractValue_ExpectAndThrow(str, 0);
-	
-	value = fa(str);
-	extractValue_ExpectAndReturn(str, 456);
-
-	TEST_ASSERT_EQUAL(456, value);
-}*/
-
 void test_fa_over_range_should_mock_and_throw_error(void){
 	int value;
 	int e;
@@ -57,19 +29,18 @@ void test_fa_over_range_should_mock_and_throw_error(void){
 	
 }
 
-void test_fa_should_store_value_132_into_ACCESS(void){
+/*void test_fa_should_mock_and_return_132(void){
 	int value;
 	
 	Text *text = textNew("132");
 	String *str = stringNew(text);
 	
+	extractValue_ExpectAndReturn(str, 0x132);
 	extractValue_ExpectAndThrow(str, 0);
-	extractAccessBanked_ExpectAndThrow(str, 0);
-	value = fa(str);
+	fa(str);
 	
-	extractValue_ExpectAndReturn(str, 132);
-	extractAccessBanked_ExpectAndReturn(str, 0);
+	extractValue_ExpectAndReturn(str, 0x132);
 	value = fa(str);
 
-	//TEST_ASSERT_EQUAL(123, value);
-}
+	TEST_ASSERT_EQUAL(value, 0x132);
+}*/

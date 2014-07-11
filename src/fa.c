@@ -10,27 +10,47 @@
 
 int fa(String *arguments){
 	int operand1;
+	int opcode;
+	int e;
+	
+	Try{
+		operand1 = extractValue(arguments);
+	}Catch(e){ 
+        printf("Error Throw");
+		Throw(e);
+	} 
+	
+	return opcode = operand1;
+}
+
+/*int a(String *arguments){
+	int operand1;
 	int operand2;
+	int opcode;
 	int BANKED = 1;
 	int ACCESS = 0;
 	int e;
 	int error;
 	
 	Try{
-		operand1 = extractValue(arguments);
+		extractValue(arguments);
 	}Catch(e){
 		if(e == ERR_NO_ERROR){
+			operand1 = extractValue(arguments);
 			printf("aaa\n");
-			operand1 = operand1 & 0x01;
+			printf("%x\n", operand1);
+		//	operand1 = operand1 & 0x01;
 			Try{
-				operand2 =extractAccessBanked(arguments);
+				extractAccessBanked(arguments);
 			}Catch(error){
 				if(error == ERR_NO_ERROR){
+					operand2 =extractAccessBanked(arguments);
 					printf("bbb\n");
-					if(operand1 == 0){
+					printf("%x\n", operand2);
+					if(operand2 == 0){
 						printf("ccc\n");
 						operand2 = ACCESS;
-						printf("%d", operand2);
+						printf("%x\n", operand2);
 					}else{
 						printf("ddd\n");
 						operand2 = BANKED;
@@ -45,25 +65,5 @@ int fa(String *arguments){
 		}
 	} 
 	
-	return operand1;
-}
-
-/*int operand_2(String *arguments){
-	int operand1;
-	int operand2;
-	int opcode;
-	int BANKED = 1;
-	int ACCESS = 0;
-	int e;
-	
-	Try{
-		operand1 = fa(arguments);
-	}Catch(e){
-		if(e != ERR_EMPTY_VALUE){
-			operand2 =extractAccessBanked(arguments);
-		}else
-			Throw(ERR_EMPTY_VALUE);
-	}
-	
-	return opcode = operand1;
+	return opcode = operand2 + operand1;
 }*/
