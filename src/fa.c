@@ -19,11 +19,11 @@ int operand1ExtractValue(String *arguments){
 		Throw(e);
 	} 
 	
-    printf("%x", operand1);
+    printf("%x\n", operand1);
 	return operand1;
 }
 
-int operand2ExtractAccessBanked(String *arguments){
+int operand2ExtractAccessBanked(String *arguments, int value){
 	int operand2;
     int BANKED = 1;
     int ACCESS = 0;
@@ -32,18 +32,39 @@ int operand2ExtractAccessBanked(String *arguments){
 	Try{
 		operand2 = extractAccessBanked(arguments);
 	}Catch(e){ 
-        printf("Error opearand2 Throw");
-		Throw(e);
-	} 
+		if(e == ERR_EMPTY_VALUE || e == ERR_NO_ARGUMENT){
+			if((value >= 0x0 && value <= 0x80) || (value >= 0xff0 && value <= 0xfff)){
+				operand2 = ACCESS;
+			}else{
+				operand2 = BANKED;
+			}
+		}else{
+			printf("Error opearand2 Throw");
+			Throw(e);
+		}
+	}
 	
     if(operand2 == 0){
         operand2 = ACCESS;
     }else{
-        operand2 = BANKED
+        operand2 = BANKED;
     }
     
-    
-    //printf("%x", operand2);
+    printf("%x", operand2);
 	return operand2;
+}
+
+int FA(String *arguments){
+	int operand1;
+	int operand2;
+	int opcode;
+	int e;
+	
+	operand1 = operand1ExtractValue(arguments);
+	operand2 = operand2ExtractAccessBanked(arguments, operand1);
+	
+	operand1 = operand1 & 0xff;
+	
+	return opcode = operand1 + operand2;
 }
 
