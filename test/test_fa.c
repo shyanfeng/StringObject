@@ -11,17 +11,17 @@ void setUp(void){}
 
 void tearDown(void){}
 
-void test_fa_over_range_should_mock_and_throw_error(void){
+void test_operand1ExtractValue_over_range_should_mock_and_throw_error(void){
 	int value;
 	int e;
 	
 	Text *text = textNew("");
 	String *str = stringNew(text);
 	
-	extractValue_ExpectAndThrow(str, 1);
+	extractValue_ExpectAndThrow(str, 3);
 	
 	Try{
-		value = fa(str);
+		value = operand1ExtractValue(str);
 	}Catch(e){
 		TEST_ASSERT_EQUAL(ERR_EMPTY_VALUE, e);
 		
@@ -29,18 +29,31 @@ void test_fa_over_range_should_mock_and_throw_error(void){
 	
 }
 
-/*void test_fa_should_mock_and_return_132(void){
+void test_operand1ExtractValue_should_mock_and_return_35(void){
 	int value;
 	
-	Text *text = textNew("132");
+	Text *text = textNew("35");
 	String *str = stringNew(text);
 	
-	extractValue_ExpectAndReturn(str, 0x132);
-	extractValue_ExpectAndThrow(str, 0);
-	fa(str);
-	
-	extractValue_ExpectAndReturn(str, 0x132);
-	value = fa(str);
+	extractValue_ExpectAndReturn(str, 0x35);
+	value = operand1ExtractValue(str);
 
-	TEST_ASSERT_EQUAL(value, 0x132);
-}*/
+	TEST_ASSERT_EQUAL(value, 0x35);
+}
+
+void test_operand2ExtractAccessBanked_should_throw_error(void){
+	int value;
+	int e;
+	
+	Text *text = textNew("135");
+	String *str = stringNew(text);
+	
+	extractAccessBanked_ExpectAndThrow(str, 2);
+
+	Try{
+		value = operand2ExtractAccessBanked(str);
+	}Catch(e){
+		TEST_ASSERT_EQUAL(ERR_ILLEGAL_ARGUMENT, e);
+		
+	}
+}

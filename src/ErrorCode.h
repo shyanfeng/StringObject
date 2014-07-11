@@ -3,9 +3,10 @@
 
 typedef enum {
   ERR_NO_ERROR,
-  ERR_EMPTY_VALUE,
   ERR_NUMBER_NOT_WELL_FORMED,
-  ERR_OPERAND
+  ERR_ILLEGAL_ARGUMENT,
+  ERR_EMPTY_VALUE,
+  ERR_NO_ARGUMENT
 } ErrorCode;
 
 #endif //ErrorCode_H
