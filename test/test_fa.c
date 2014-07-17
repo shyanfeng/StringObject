@@ -11,7 +11,7 @@ void setUp(void){}
 
 void tearDown(void){}
 
-void test_operand1ExtractValue_ERR_EMPTY_VALUE_should_mock_and_throw_error(void){
+void test_fa_operand1ExtractValue_ERR_EMPTY_VALUE_should_mock_and_throw_error(void){
 	int value;
 	int e;
 	
@@ -29,7 +29,7 @@ void test_operand1ExtractValue_ERR_EMPTY_VALUE_should_mock_and_throw_error(void)
 	
 }
 
-void test_operand1ExtractValue_should_mock_and_return_35(void){
+void test_fa_operand1ExtractValue_should_mock_and_return_35(void){
 	int value;
 	
 	Text *text = textNew("35");
@@ -41,7 +41,7 @@ void test_operand1ExtractValue_should_mock_and_return_35(void){
 	TEST_ASSERT_EQUAL(value, 0x35);
 }
 
-void test_operand2ExtractAccessBanked_should_throw_error(void){
+void test_fa_operand2ExtractAccessBanked_should_throw_error(void){
 	int value;
 	int e;
 	
@@ -58,7 +58,7 @@ void test_operand2ExtractAccessBanked_should_throw_error(void){
 	}
 }
 
-void test_operand2ExtractAccessBanked_with_0_should_store_ACCESS(void){
+void test_fa_operand2ExtractAccessBanked_with_0_should_store_ACCESS(void){
 	int value;
 	int e;
 	
@@ -72,7 +72,7 @@ void test_operand2ExtractAccessBanked_with_0_should_store_ACCESS(void){
 	
 }
 
-void test_operand2ExtractAccessBanked_with_1_should_store_BANKED(void){
+void test_fa_operand2ExtractAccessBanked_with_1_should_store_BANKED(void){
 	int value;
 	int e;
 	
@@ -86,7 +86,7 @@ void test_operand2ExtractAccessBanked_with_1_should_store_BANKED(void){
 	
 }
 
-void test_operand2ExtractAccessBanked_with_ERR_EMPTY_VALUE_between_0_and_80_should_store_ACCESS(void){
+void test_fa_operand2ExtractAccessBanked_with_ERR_EMPTY_VALUE_between_0_and_80_should_store_ACCESS(void){
 	int value;
 	int e;
 	
@@ -100,7 +100,7 @@ void test_operand2ExtractAccessBanked_with_ERR_EMPTY_VALUE_between_0_and_80_shou
 	
 }
 
-void test_operand2ExtractAccessBanked_with_ERR_NO_ARGUMENT_should_store_ACCESS(void){
+void test_fa_operand2ExtractAccessBanked_with_ERR_NO_ARGUMENT_should_store_ACCESS(void){
 	int value;
 	int e;
 	
@@ -114,7 +114,7 @@ void test_operand2ExtractAccessBanked_with_ERR_NO_ARGUMENT_should_store_ACCESS(v
 	
 }
 
-void test_operand2ExtractAccessBanked_with_ERR_EMPTY_VALUE_between_ff0_and_fff_should_store_ACCESS(void){
+void test_fa_operand2ExtractAccessBanked_with_ERR_EMPTY_VALUE_between_ff0_and_fff_should_store_ACCESS(void){
 	int value;
 	int e;
 	
@@ -128,7 +128,7 @@ void test_operand2ExtractAccessBanked_with_ERR_EMPTY_VALUE_between_ff0_and_fff_s
 	
 }
 
-void test_operand2ExtractAccessBanked_with_ERR_NO_ARGUMENT_between_ff0_and_fff_should_store_ACCESS(void){
+void test_fa_operand2ExtractAccessBanked_with_ERR_NO_ARGUMENT_between_ff0_and_fff_should_store_ACCESS(void){
 	int value;
 	int e;
 	
@@ -142,7 +142,7 @@ void test_operand2ExtractAccessBanked_with_ERR_NO_ARGUMENT_between_ff0_and_fff_s
 	
 }
 
-void test_operand2ExtractAccessBanked_with_ERR_EMPTY_VALUE_0x233_should_store_BANKED(void){
+void test_fa_operand2ExtractAccessBanked_with_ERR_EMPTY_VALUE_0x233_should_store_BANKED(void){
 	int value;
 	int e;
 	
@@ -156,7 +156,7 @@ void test_operand2ExtractAccessBanked_with_ERR_EMPTY_VALUE_0x233_should_store_BA
 	
 }
 
-void test_operand2ExtractAccessBanked_with_ERR_NO_ARGUMENT_0x753_should_store_BANKED(void){
+void test_fa_operand2ExtractAccessBanked_with_ERR_NO_ARGUMENT_0x753_should_store_BANKED(void){
 	int value;
 	int e;
 	
@@ -170,7 +170,7 @@ void test_operand2ExtractAccessBanked_with_ERR_NO_ARGUMENT_0x753_should_store_BA
 	
 }
 
-void test_FA_should_return_0x35_and_store_in_ACCESS(void){
+void test_fa_should_return_0x35_and_store_in_ACCESS(void){
 	int value;
 	int e;
 	
@@ -185,7 +185,7 @@ void test_FA_should_return_0x35_and_store_in_ACCESS(void){
 	TEST_ASSERT_EQUAL(value, 0x35);
 }
 
-void test_FA_should_return_0x34_and_store_in_BANKED(void){
+void test_fa_should_return_0x34_and_store_in_BANKED(void){
 	int value;
 	int e;
 	
@@ -200,7 +200,7 @@ void test_FA_should_return_0x34_and_store_in_BANKED(void){
 	TEST_ASSERT_EQUAL(value, 0x35);
 }
 
-void test_FA_with_ERR_EMPTY_VALUE_0x40_should_return_0x40_and_store_in_ACCESS(void){
+void test_fa_with_ERR_EMPTY_VALUE_0x40_should_return_0x40_and_store_in_ACCESS(void){
 	int value;
 	int e;
 	
@@ -215,7 +215,7 @@ void test_FA_with_ERR_EMPTY_VALUE_0x40_should_return_0x40_and_store_in_ACCESS(vo
 	TEST_ASSERT_EQUAL(value, 0x40);
 }
 
-void test_FA_with_ERR_NO_ARGUMENT_0xff6_should_return_0xf6_and_store_in_ACCESS(void){
+void test_fa_with_ERR_NO_ARGUMENT_0xff6_should_return_0xf6_and_store_in_ACCESS(void){
 	int value;
 	int e;
 	
@@ -230,7 +230,7 @@ void test_FA_with_ERR_NO_ARGUMENT_0xff6_should_return_0xf6_and_store_in_ACCESS(v
 	TEST_ASSERT_EQUAL_HEX16(value, 0xf6);
 }
 
-void test_FA_operand1_empty_value_should_mock_and_throw_error(void){
+void test_fa_operand1_empty_value_should_mock_and_throw_error(void){
 	int value;
 	int e;
 	
@@ -247,7 +247,7 @@ void test_FA_operand1_empty_value_should_mock_and_throw_error(void){
 	}
 }
 
-void test_FA_operand2_ERR_ILLEGAL_ARGUMENT_should_mock_and_throw_error(void){
+void test_fa_operand2_ERR_ILLEGAL_ARGUMENT_should_mock_and_throw_error(void){
 	int value;
 	int e;
 	
