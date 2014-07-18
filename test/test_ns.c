@@ -18,12 +18,12 @@ void test_NS_operand1ExtractValue_ERR_EMPTY_VALUE_should_throw_error(void){
 	Text *text = textNew("135");
 	String *str = stringNew(text);
 	
-	extractValue_ExpectAndThrow(str, 2);
+	extractValue_ExpectAndThrow(str, 3);
 	
 	Try{
 		value = operand1ExtractValue(str);
 	}Catch(e){
-		TEST_ASSERT_EQUAL(ERR_ILLEGAL_ARGUMENT, e);
+		TEST_ASSERT_EQUAL(ERR_EMPTY_VALUE, e);
 	}
 	
 }
@@ -148,4 +148,38 @@ void test_NS_operand1_should_mock_and_return_0x02670067(void){
 	printf("%x", value);
 	TEST_ASSERT_EQUAL_HEX32(value, 0x02670067);
 
+}
+
+void test_NS_operand1_ERR_EMPTY_VALUE_should_throw_error(void){
+	int value;
+	int e;
+	
+	Text *text = textNew("135");
+	String *str = stringNew(text);
+	
+	extractValue_ExpectAndThrow(str, 3);
+	
+	Try{
+		value = NS(str);
+	}Catch(e){
+		TEST_ASSERT_EQUAL(ERR_EMPTY_VALUE, e);
+	}
+	
+}
+
+void test_NS_operand2_should_mock_and_throw_error(void){
+	int value;
+	int e;
+	
+	Text *text = textNew("135");
+	String *str = stringNew(text);
+	
+	extractValue_ExpectAndThrow(str, 2);
+	
+	Try{
+		value = operand2ExtractValue(str);
+	}Catch(e){
+		TEST_ASSERT_EQUAL(ERR_ILLEGAL_ARGUMENT, e);
+	}
+	
 }
