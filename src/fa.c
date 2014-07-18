@@ -65,6 +65,6 @@ int FA(String *arguments){
 	
 	operand1 = operand1 & 0xff;
 	
-	return opcode = operand1 + operand2;
+	return opcode = (operand2<<8) + operand1;
 }
 

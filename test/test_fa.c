@@ -182,7 +182,7 @@ void test_fa_should_return_0x35_and_store_in_ACCESS(void){
 	
 	value = FA(str);
 
-	TEST_ASSERT_EQUAL(value, 0x35);
+	TEST_ASSERT_EQUAL_HEX16(value, 0x035);
 }
 
 void test_fa_should_return_0x34_and_store_in_BANKED(void){
@@ -197,7 +197,7 @@ void test_fa_should_return_0x34_and_store_in_BANKED(void){
 	
 	value = FA(str);
 
-	TEST_ASSERT_EQUAL(value, 0x35);
+	TEST_ASSERT_EQUAL_HEX16(value, 0x134);
 }
 
 void test_fa_with_ERR_EMPTY_VALUE_0x40_should_return_0x40_and_store_in_ACCESS(void){
@@ -212,7 +212,7 @@ void test_fa_with_ERR_EMPTY_VALUE_0x40_should_return_0x40_and_store_in_ACCESS(vo
 	
 	value = FA(str);
 
-	TEST_ASSERT_EQUAL(value, 0x40);
+	TEST_ASSERT_EQUAL_HEX16(value, 0x40);
 }
 
 void test_fa_with_ERR_NO_ARGUMENT_0xff6_should_return_0xf6_and_store_in_ACCESS(void){
