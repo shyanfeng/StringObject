@@ -150,7 +150,6 @@ void test_fsfd_operand1_ERR_EMPTY_VALUE_should_mock_and_throw_error(void){
 		value = FSFD(str);
 	}Catch(e){
 		TEST_ASSERT_EQUAL(ERR_EMPTY_VALUE, e);
-		
 	}
 	
 }

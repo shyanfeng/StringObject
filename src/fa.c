@@ -58,7 +58,6 @@ int FA(String *arguments){
 	int operand1;
 	int operand2;
 	int opcode;
-	int e;
 	
 	operand1 = operand1ExtractValue(arguments);
 	operand2 = operand2ExtractAccessBanked(arguments, operand1);
