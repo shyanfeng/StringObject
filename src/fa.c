@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "fa.h"
+#include "FA.h"
 #include "StringObject.h"
 #include "String.h"
 #include "Text.h"
@@ -7,10 +7,11 @@
 #include "CException.h"
 #include "CustomTypeAssert.h"
 #include "Evaluate.h"
+#include "Helper.h"
 
-int operand1ExtractValue(String *arguments){
+STATIC int operand1ExtractValue(String *arguments){
 	int operand1;
-	int e;
+	ErrorCode e;
 	
 	Try{
 		operand1 = extractValue(arguments);
@@ -23,11 +24,11 @@ int operand1ExtractValue(String *arguments){
 	return operand1;
 }
 
-int operand2ExtractAccessBanked(String *arguments, int value){
+STATIC int operand2ExtractAccessBanked(String *arguments, int value){
 	int operand2;
     int BANKED = 1;
     int ACCESS = 0;
-	int e;
+	ErrorCode e;
     
 	Try{
 		operand2 = extractAccessBanked(arguments);

@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "s.h"
+#include "S.h"
 #include "StringObject.h"
 #include "String.h"
 #include "Text.h"
@@ -7,8 +7,9 @@
 #include "CException.h"
 #include "CustomTypeAssert.h"
 #include "Evaluate.h"
+#include "Helper.h"
 
-int operand1ExtractValue(String *arguments){
+STATIC int operand1ExtractValue(String *arguments){
 	int operand1;
 	int e;
 	

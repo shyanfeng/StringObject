@@ -1,9 +1,11 @@
-#ifndef fa_H
-#define fa_H
+#ifndef _FA_H_
+#define _FA_H_
 
 #include "Evaluate.h"
-int operand1ExtractValue(String *arguments);
-int operand2ExtractAccessBanked(String *arguments, int value);
-int FA(String *arguments);
+#include "Helper.h"
 
-#endif // fa_H
+int FA(String *arguments);
+STATIC int operand1ExtractValue(String *arguments);
+STATIC int operand2ExtractAccessBanked(String *arguments, int value);
+
+#endif // _FA_H_

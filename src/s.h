@@ -2,8 +2,9 @@
 #define s_H
 
 #include "Evaluate.h"
+#include "Helper.h"
 
-int operand1ExtractValue(String *arguments);
+STATIC int operand1ExtractValue(String *arguments);
 int S(String *arguments);
 
 #endif // s_H

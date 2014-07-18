@@ -2,8 +2,10 @@
 #define fsfd_H
 
 #include "Evaluate.h"
-int operand1ExtractValue(String *arguments);
-int operand2ExtractValue(String *arguments);
+#include "Helper.h"
+
+STATIC int operand1ExtractValue(String *arguments);
+STATIC int operand2ExtractValue(String *arguments);
 int FSFD(String *arguments);
 
 #endif // fsfd_H

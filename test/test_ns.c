@@ -1,6 +1,6 @@
 #include "unity.h"
 #include "mock_Evaluate.h"
-#include "ns.h"
+#include "NS.h"
 #include "CException.h"
 #include "StringObject.h"
 #include "String.h"

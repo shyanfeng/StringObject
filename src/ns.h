@@ -2,9 +2,10 @@
 #define ns_H
 
 #include "Evaluate.h"
+#include "Helper.h"
 
-int operand1ExtractValue(String *arguments);
-int operand2ExtractValue(String *arguments)
+STATIC int operand1ExtractValue(String *arguments);
+STATIC int operand2ExtractValue(String *arguments);
 int NS(String *arguments);
 
 #endif // ns_H
