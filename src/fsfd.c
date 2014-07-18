@@ -48,6 +48,6 @@ int FSFD(String *arguments){
 	operand1 = operand1ExtractValue(arguments);
 	operand2 = operand2ExtractValue(arguments);
 	
-	return opcode = operand2 + operand1;
+	return opcode = (0x0<<24) + (operand2<<16) + (0x0<<8) + (operand1);
 }
 
