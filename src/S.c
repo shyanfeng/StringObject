@@ -6,33 +6,14 @@
 #include "ErrorCode.h"
 #include "CException.h"
 #include "CustomTypeAssert.h"
-#include "Evaluate.h"
-#include "Helper.h"
-
-STATIC int operand1ExtractValue(String *arguments){
-	int operand1;
-	int e;
-	
-	Try{
-		operand1 = extractValue(arguments);
-	}Catch(e){ 
-		if(e == ERR_NO_ARGUMENT || e == ERR_EMPTY_VALUE){
-			operand1 = 0;
-		}else if(e == ERR_ILLEGAL_ARGUMENT){
-			printf("Error operand1 Throw");
-			Throw(e);
-		}
-	}
-	
-	return operand1;
-}
+#include "Extract.h"
+#include "Extract1BitsValue.h"
 
 int S(String *arguments){
 	int operand1;
 	int opcode;
 	
-	operand1 = operand1ExtractValue(arguments);
-	operand1 = 0x01 & operand1;
+	operand1 = operandExtract1BitsValue(arguments);
 	
 	return opcode = operand1;
 }
