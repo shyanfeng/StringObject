@@ -9,6 +9,21 @@
 #include "Extract.h"
 #include "Extract1BitsValue.h"
 
+/**
+ *
+ *	operandExtract1BitsValue
+ *
+ *	To catch ERR_EMPTY_ARGUMENT or ERR_NO_ARGUMENT. If it caught then it 
+ *	will assign operand equal to 0 and return operand. Else it will catch 
+ *	ERR_ILLEGAL_ARGUMENT and throw error.
+ *	
+ *	Input	:
+ *		arguements
+ *		
+ *	Return	:
+ *		operand
+ *
+ **/
 int operandExtract1BitsValue(String *arguments){
 	int operand;
 	int e;

@@ -8,6 +8,21 @@
 #include "CustomTypeAssert.h"
 #include "Extract.h"
 
+/**
+ *
+ *	extract1bitsACCESSBANKED
+ *
+ *	To catch ERR_EMPTY_ARGUMENT or ERR_NO_ARGUMENT. If it caught then it 
+ *	will check the range and return ACCESS or BANKED.
+ *
+ *	Input	:
+ *		arguements
+ *		value
+ *		
+ *	Return	:
+ *		operand2
+ *
+ **/
 int extract1bitsACCESSBANKED(String *arguments, int value){
 	int operand2;
     int BANKED = 1;

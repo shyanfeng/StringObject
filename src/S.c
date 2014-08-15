@@ -9,6 +9,18 @@
 #include "Extract.h"
 #include "Extract1BitsValue.h"
 
+/**
+ *	S
+ *	
+ *	To generate the opcode based on the operand1. The operand1 is to get the 
+ *	value and return.
+ *
+ *	Input 	:
+ *		arguments
+ *
+ *	Return	:
+ *		opcode
+ **/
 int S(String *arguments){
 	int operand1;
 	int opcode;
